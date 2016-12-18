@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
 	php5-mysqlnd \
 	pdns-server \
 	pdns-backend-mysql \
+	dnsutils \
+        pdns-recursor \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -34,6 +36,7 @@ COPY assets/php/php.ini /etc/php5/fpm/php.ini
 COPY assets/php/php-cli.ini /etc/php5/cli/php.ini
 
 COPY assets/pdns/pdns.conf /etc/powerdns/pdns.conf
+COPY assets/pdns/recursor.conf /etc/powerdns/recursor.conf
 COPY assets/pdns/pdns.d/ /etc/powerdns/pdns.d/
 COPY assets/mysql/pdns.sql /pdns.sql
 
